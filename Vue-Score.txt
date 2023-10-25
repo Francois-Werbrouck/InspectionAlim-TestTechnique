@@ -3,4 +3,18 @@
 -- Score : longueur du contenue de l'entrée par rapport à la distribution
 -- Calcul score: longueur_Contenu / Max_longueur
 
-
+create or replace view "francois.werbrouck.1@ens.etsmtl.ca".score as	
+	select
+		c.id as crawl_ID,
+		hc."content" as html_content,
+		case
+			when LENGTH(hc."content") = 0 then 0.0
+			when Length(hc."content") = max_long then 1.0
+			else Length(hc."content")::numeric  / max_long::numeric 
+		end as score
+	from louis_v005.crawl c
+	join louis_v005.html_content hc on c.md5hash = hc.md5hash 
+	cross join (
+		select MAX(LENGTH(hc2."content")) as max_long
+		from louis_v005.html_content hc2 
+	) max_length;
