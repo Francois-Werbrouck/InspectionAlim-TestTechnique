@@ -1,0 +1,6 @@
+-- Francois Werbrouck 2023-10-25
+-- Script pour creer une la vue 'Score'
+-- Score : longueur du contenue de l'entrée par rapport à la distribution
+-- Calcul score: longueur_Contenu / Max_longueur
+
+
