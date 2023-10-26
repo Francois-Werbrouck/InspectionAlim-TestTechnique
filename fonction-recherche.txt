@@ -1,0 +1,17 @@
+-- Francois Werbrouck 2023-10-25
+-- Script pour creer une f() recherche
+-- Cette fonction sera basé sur la vue score précédemment créé
+
+create or replace function recherche(keyword text)
+	return table (
+		crawl_id bigINt
+		html_content text
+		score double precision
+	) as resultat
+	begin
+		return QUERY
+		select * from score 
+		where html_content like '%' || keyword || '%'
+		order by score
+		limit 10;
+	end;
