@@ -3,11 +3,11 @@
 -- Cette fonction sera basé sur la vue score précédemment créé
 
 create or replace function recherche(keyword text)
-	return table (
-		crawl_id bigINt
-		html_content text
+	returns table (
+		crawl_id bigINt,
+		html_content text,
 		score double precision
-	) as resultat
+	) as $$
 	begin
 		return QUERY
 		select * from score 
@@ -15,3 +15,5 @@ create or replace function recherche(keyword text)
 		order by score
 		limit 10;
 	end;
+$$  LANGUAGE plpgsql
+	
