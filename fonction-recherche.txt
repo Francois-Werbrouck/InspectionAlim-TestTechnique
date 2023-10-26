@@ -2,6 +2,8 @@
 -- Script pour creer une f() recherche
 -- Cette fonction sera basé sur la vue score précédemment créé
 
+--Possibilité d'améliorer le text seach pour optimiser les gros textes
+
 create or replace function recherche(keyword text)
 	returns table (
 		crawl_id bigINt,
